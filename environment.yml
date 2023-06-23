@@ -1,0 +1,12 @@
+name: superpoint_superglue_deployment
+channels:
+  - defaults
+  - anaconda
+dependencies:
+  - python=3.8
+  - pip
+  - pip:
+      - -r requirements.txt
+
+      # environment tools
+      - -r requirements-dev.txt

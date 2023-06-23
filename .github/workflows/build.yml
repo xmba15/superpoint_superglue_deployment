@@ -1,0 +1,23 @@
+name: Build
+
+on:
+  push:
+    branches: ["master"]
+  pull_request:
+
+jobs:
+  linting:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.x"
+
+      - name: Apply pre-commit
+        uses: pre-commit/action@v3.0.0
+        with:
+          extra_args: --all-files
