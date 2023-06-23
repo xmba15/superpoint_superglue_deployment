@@ -1,0 +1,9 @@
+flake8
+pep8-naming
+black
+isort
+mypy
+pytest
+pytest-cov
+pytest-profiling
+pre-commit

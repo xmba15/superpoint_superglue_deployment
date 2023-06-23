@@ -1,0 +1,6 @@
+# typing
+typing-extensions
+
+torch>=1.1.0
+opencv-python>=3.4.19
+loguru>=0.7.0
