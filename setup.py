@@ -35,6 +35,11 @@ def main():
         ],
         packages=find_packages(exclude=["tests"]),
         install_requires=_INSTALL_REQUIRES,
+        entry_points={
+            "console_scripts": [
+                "match_two_images=superpoint_superglue_deployment.__main__:main",
+            ]
+        },
     )
 
 

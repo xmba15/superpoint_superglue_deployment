@@ -114,19 +114,23 @@ class SuperGlueHandler:
         query_shape: Tuple[int, int],
         ref_shape: Tuple[int, int],
     ) -> List[cv2.DMatch]:
+        num_query_kpts = query_pred["keypoints"][0].size()[0]
+        num_ref_kpts = ref_pred["keypoints"][0].size()[0]
         pred = self.run(
             query_pred,
             ref_pred,
             query_shape,
             ref_shape,
         )
-        query_indices = pred["matches0"].cpu().numpy().squeeze(0)
-        ref_indices = pred["matches1"].cpu().numpy().squeeze(0)
+        matches0_to_1 = pred["matches0"].cpu().numpy().squeeze(0)
         query_matching_scores = pred["matching_scores0"].cpu().numpy().squeeze(0)
+        valid = matches0_to_1 > -1
 
         del pred
-        matched_query_indices = np.where(query_indices > -1)[0]
-        matched_ref_indices = np.where(ref_indices > -1)[0]
+
+        matched_query_indices = np.arange(num_query_kpts)[valid]
+        matched_ref_indices = np.arange(num_ref_kpts)[matches0_to_1[valid]]
+
         matches = [
             cv2.DMatch(
                 _distance=1 - query_matching_scores[matched_query_idx],

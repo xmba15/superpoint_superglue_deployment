@@ -91,6 +91,12 @@ if __name__ == "__main__":
 - [Notebook with detailed sample code for SuperPoint](notebooks/demo_superpoint.ipynb)
 - [Notebook with detailed sample code for SuperGlue](notebooks/demo_superglue.ipynb)
 
+- Command line to test matching two images after installing the library
+
+```bash
+match_two_images --query_path [path/to/query/image] --ref_path [path/to/reference/image] --use_gpu
+```
+
 ## 🎛 Development environment
 
 ---
